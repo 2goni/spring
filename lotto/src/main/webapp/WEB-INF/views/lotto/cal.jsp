@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+행운의 번호는 :
 	<c:forEach items="${lotto}" var="num">
-	${num}
+	 ${num}
 	</c:forEach>
 </body>
 </html>

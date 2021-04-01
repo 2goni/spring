@@ -7,7 +7,10 @@ public interface LottoService {
 	//�� ��Ϻ���
 	public int[] cal(LottoVO vo);
 	
-	public int[] getlotto(long num);
-	
 	public int check(int num, int[] lotto);
+	
+	int getRandom(long num);
+
+	int[] getLotto(long num);
+	
 }

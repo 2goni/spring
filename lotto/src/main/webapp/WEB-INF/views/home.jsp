@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>
-	구경 오셨군요
+	행운의 로또
 </h1>
 
 <P><a href="lotto/main">이거 누르면 이동</a>  </P>

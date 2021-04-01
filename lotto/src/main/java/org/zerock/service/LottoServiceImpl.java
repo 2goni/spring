@@ -1,6 +1,7 @@
 package org.zerock.service;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.LottoVO;
@@ -14,41 +15,39 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public int[] cal(LottoVO vo) {
 		LocalDate dayday = LocalDate.now();
-		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear());
-		int[] lotto = getlotto(num);
+		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear()*1.618);
+		int[] lotto = getLotto(num);
 		return lotto;
 	}
-
+	
 	@Override
-	public int[] getlotto(long num) {
+	public int[] getLotto(long num) {
 		int[] lotto = new int[6];
-		int rd = (int) num;
+		int rd = 0;
 		for (int i = 0; i < lotto.length; i++) {
-			rd = check(rd, lotto);
+			rd = check(getRandom(num),lotto);
 			lotto[i] = rd;
 		}
 		return lotto;
 	}
-
+	
+	@Override
+	public int getRandom(long num) {
+		Random random = new Random(num);
+		int rd = random.nextInt(45)+1;
+		return rd;
+	}
+	
+	
 	@Override
 	public int check(int num, int[] lotto) {
-		int rd = (int) (num* 0.1618);
-		String[] str = Integer.toString(rd).split("");
-		for(String sn : str) {
-			rd +=  Integer.parseInt(sn); 
-		}
-		
-		System.out.println(rd);
 		for (int i = 0; i < lotto.length; i++) {
-			if (lotto[i] == rd || rd > 45) {
-				check(rd, lotto);
+			if (lotto[i] == num) {
+				num = getRandom(Math.round(num*1.618));
+				check(num,lotto);
 			}
-			if (rd < 1) {
-				check(rd*1618, lotto);
-			}
-
 		}
-		return rd;
+		return num;
 	}
 
 }
