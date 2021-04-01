@@ -21,12 +21,13 @@ public class LottoController {
 	@RequestMapping("/main")
 	public void show() {  
 	}
+	//main.jsp 호출
 	
 	@PostMapping("/cal")
 	public void cal(Model model, LottoVO vo) {
 		model.addAttribute("lotto", service.cal(vo));
 	}
-
+	//service.cal()메소드 사용후 model에 lotto 이름으로 담아 cal.jsp 호출
 	
 }
 
