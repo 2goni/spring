@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.LottoVO;
+import org.zerock.domain.ManualVO;
 
 import lombok.AllArgsConstructor;
 
@@ -13,10 +14,16 @@ import lombok.AllArgsConstructor;
 public class LottoServiceImpl implements LottoService {
 
 	@Override
-	public int[] cal(LottoVO vo) {
+	public int[] cal(LottoVO vo, ManualVO mo) {
 		LocalDate dayday = LocalDate.now();
 		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear()*1.618);
 		int[] lotto = getLotto(num);
+		for(int i=0; i<6; i++) {
+			int[] ins = mo.getall();
+			if(ins[i] != 0) {
+				lotto[i] = check(ins[i],lotto);
+			}
+		}
 		return lotto;
 	}
 	

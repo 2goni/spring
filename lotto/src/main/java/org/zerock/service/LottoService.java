@@ -2,10 +2,11 @@ package org.zerock.service;
 
 
 import org.zerock.domain.LottoVO;
+import org.zerock.domain.ManualVO;
 
 public interface LottoService {
 	
-	public int[] cal(LottoVO vo); // 입력된 값으로 로또 만들기
+	public int[] cal(LottoVO vo, ManualVO mo); // 입력된 값으로 로또 만들기
 	
 	public int check(int num, int[] lotto); // 로또 중복 체크
 	
