@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 행운의 번호는 :
 	<c:forEach items="${lotto}" var="num">
 	 ${num}
 	</c:forEach>
+	<br>
+	<button onclick="location.href = 'main'" >메인으로</button>
 </body>
 </html>

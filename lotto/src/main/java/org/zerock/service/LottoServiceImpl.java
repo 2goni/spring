@@ -16,45 +16,58 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public int[] cal(LottoVO vo, ManualVO mo) {
 		LocalDate dayday = LocalDate.now();
-		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear()*1.618);
+		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear() * 1.618);
 		int[] lotto = getLotto(num);
-		for(int i=0; i<6; i++) {
+		for (int i = 0; i < 6; i++) {
 			int[] ins = mo.getall();
-			if(ins[i] != 0) {
-				lotto[i] = check(ins[i],lotto);
+			if (ins[i] != 0) {
+				lotto[i] = check(ins[i], lotto);
 			}
 		}
-		return lotto;
+		return sort(lotto);
 	}
-	
+
 	@Override
 	public int[] getLotto(long num) {
 		int[] lotto = new int[6];
-		int rd = 0;
+		long rd = num;
 		for (int i = 0; i < lotto.length; i++) {
-			rd = check(getRandom(num),lotto);
-			lotto[i] = rd;
+			lotto[i] = check(getRandom(rd), lotto);
+			rd = (long) (rd*1.618);
 		}
 		return lotto;
 	}
-	
+
 	@Override
 	public int getRandom(long num) {
 		Random random = new Random(num);
-		int rd = random.nextInt(45)+1;
+		int rd = random.nextInt(45) + 1;
 		return rd;
 	}
-	
-	
+
 	@Override
 	public int check(int num, int[] lotto) {
 		for (int i = 0; i < lotto.length; i++) {
 			if (lotto[i] == num) {
-				num = getRandom(Math.round(num*1.618));
-				check(num,lotto);
+				num = getRandom(Math.round(num * 1.618));
+				check(num, lotto);
 			}
 		}
 		return num;
+	}
+
+	@Override
+	public int[] sort(int[] lotto) {
+		for (int i = 0; i < lotto.length; i++) {
+			for (int j = i; j < lotto.length; j++) {
+				if(lotto[i]>lotto[j]) {
+					int tmp = lotto[i];
+					lotto[i] = lotto[j]; 
+					lotto[j] = tmp; 
+				}
+			}
+		}
+		return lotto;
 	}
 
 }

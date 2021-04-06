@@ -14,4 +14,5 @@ public interface LottoService {
 
 	int[] getLotto(long num); // 중복된 값없는 랜덤 로또값 주기
 	
+	int[] sort(int[] lotto);
 }

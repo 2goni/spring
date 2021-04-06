@@ -11,5 +11,7 @@
 	<c:forEach items="${lotto}" var="num">
 	 ${num}
 	</c:forEach>
+	<br>
+	<button onclick="location.href = 'main'" >메인으로</button>
 </body>
 </html>
