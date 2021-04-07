@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>        
+<%@include file="../includes/header.jsp"%>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>   
   <script>
     var count = 0;
     $(document).ready(function(){
@@ -32,20 +30,31 @@
     	}
     }
     </script>
-</head>
-<body>
-	로또 생성기
+      <div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 my-auto">
+          <div class="masthead-content text-white py-5 py-md-0">
+            <h1 class="mb-3" style="font-size:3.3rem">로또 번호 추첨기</h1>
 	<form action="/lotto/cal" method="post" name="form1" onsubmit="return overcheck();">
-	생년: <input type="number" min=1 max=9999 name="year" placeholder="ex)1994" required> <br>
-	생월: <input type="number" min=1 max=12 name="month" required> <br>
-	생일: <input type="number" min=1 max=31 name="day" required> <br><br>
+	생년: <input class="form-control" type="number" min=1 max=9999 name="year" placeholder="ex)1994" required> <br>
+	생월: <input class="form-control" type="number" min=1 max=12 name="month" required> <br>
+	생일: <input class="form-control" type="number" min=1 max=31 name="day" required> <br><br>
 	::수동 입력칸	추가 버튼::<br>
 	<div class=depth_div>         
-	<input type="button" class="btn_add" value="추가">
-	<input type="button" class="btn_mi" value="삭제"><br>
+	<input type="button" class="btn_add btn-secondary" value="추가">
+	<input type="button" class="btn_mi btn-secondary" value="삭제"><br><br>
 	
 	</div>
-	<input type="submit" value="로또번호 확인">
+	<input class="btn btn-secondary" type="submit" value="로또번호 확인">
 	</form>
+	              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
