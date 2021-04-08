@@ -20,18 +20,21 @@
 });
     
     function overcheck(){
-    	  for(var i=0; i<=count; i++){
-    		  console.log(count);
-    	    for(var j=i+1; j<count; j++){
-    	   		if( document.getElementById('lnum'+i).value == document.getElementById('lnum'+j).value ){
-    	   			alert("중복발생");
-    	   			return false;
-    	   		} 
+    	if( /[0-9]/g.exec(document.getElementById('name').value) ){
+    		alert("이름은 문자를 입력해주세요");
+   			return false;
+   	    	}
+	   	  for(var i=0; i<=count; i++){
+	   	    for(var j=i+1; j<count; j++){
+	   	   		if( document.getElementById('lnum'+i).value == document.getElementById('lnum'+j).value ){
+	   	   			alert("중복발생");
+	   	   			return false;
+   	   		} 
     	  }
     	}
     }
     
-    $(document).on("keypress", "input[name]", function() {$(this).val( $(this).val().replace(/[^ㄱ-힣a-zA-Z]/gi,"") );})
+    $(document).on("keypress", "input[textonly]", function() {$(this).val( $(this).val().replace(/[^ㄱ-힣a-zA-Z]/gi,"") );})
     
     </script>
       <div class="masthead">
@@ -42,7 +45,7 @@
           <div class="masthead-content text-white py-5 py-md-0">
             <h1 class="mb-3" style="font-size:3.3rem">로또 번호 추첨기</h1>
 	<form action="/lotto/cal" method="post" name="form1" onsubmit="return overcheck();">
-	이름: <input class="form-control" id="name" type="text" name="name" required> <br>
+	이름: <input class="form-control" id="name" type="text" name="name" required textonly> <br>
 	생년: <input class="form-control" type="number" min=1 max=9999 name="year" placeholder="ex)1994" required> <br>
 	생월: <input class="form-control" type="number" min=1 max=12 name="month" required> <br>
 	생일: <input class="form-control" type="number" min=1 max=31 name="day" required> <br><br>
