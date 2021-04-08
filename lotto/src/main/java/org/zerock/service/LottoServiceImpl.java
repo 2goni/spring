@@ -16,7 +16,7 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public int[] cal(LottoVO vo, ManualVO mo) {
 		LocalDate dayday = LocalDate.now();
-		long num = Math.round(dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear() * 1.618);
+		long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear() * 1.618);
 		int[] lotto = getLotto(num);
 		for (int i = 0; i < 6; i++) {
 			int[] ins = mo.getall();

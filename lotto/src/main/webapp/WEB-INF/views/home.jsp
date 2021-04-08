@@ -12,16 +12,13 @@
             <p class="mb-5">당신의 
               <strong>생년월일 과 황금비 알고리즘</strong>으로 <br> 로또 당첨 기회를 가지세요</p>
             <div class="input-group input-group-newsletter">
-              <div class="input-group-append">
-                <button class="btn btn-secondary" type="button" onclick="location.href = 'lotto/main'" id="submit-button">GO! GO!</button>
+                <button class="btn btn-secondary" type="button" onclick="location.href = 'lotto/main'">GO! GO!</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
   <div class="social-icons">
     <ul class="list-unstyled text-center mb-0">
       <li class="list-unstyled-item">
