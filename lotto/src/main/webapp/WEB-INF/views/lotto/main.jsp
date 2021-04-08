@@ -21,7 +21,8 @@
     
     function overcheck(){
     	  for(var i=0; i<=count; i++){
-    	    for(var j=i+1; j<=count; j++){
+    		  console.log(count);
+    	    for(var j=i+1; j<count; j++){
     	   		if( document.getElementById('lnum'+i).value == document.getElementById('lnum'+j).value ){
     	   			alert("중복발생");
     	   			return false;
@@ -54,5 +55,7 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </body>
 </html>

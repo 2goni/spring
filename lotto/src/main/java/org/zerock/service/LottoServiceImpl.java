@@ -17,11 +17,11 @@ public class LottoServiceImpl implements LottoService {
 	public int[] cal(LottoVO vo, ManualVO mo) {
 		LocalDate dayday = LocalDate.now();
 		long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() * vo.getDay() * vo.getMonth() * vo.getYear() * 1.618);
-		int[] lotto = getLotto(num);
+		int[] auto = getLotto(num);
+		int[] lotto = mo.getall();
 		for (int i = 0; i < 6; i++) {
-			int[] ins = mo.getall();
-			if (ins[i] != 0) {
-				lotto[i] = check(ins[i], lotto);
+			if (lotto[i] == 0) {
+				lotto[i] = check(auto[i], lotto);
 			}
 		}
 		return sort(lotto);
