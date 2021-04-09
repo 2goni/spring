@@ -11,6 +11,7 @@
         <div class="col-12 my-auto">
           <div class="masthead-content text-white py-5 py-md-0" style="text-align: center">
 <h1 class="mb-3" style="font-size:3.3rem; text-align: center" >:: 행운의 번호 ::</h1>
+행운의 번호는 하루에 1번 생성됩니다. <br><br>
 <h2></h2>
 	  <script src="https://d3js.org/d3.v5.min.js"></script>
   <script>
