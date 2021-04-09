@@ -48,7 +48,8 @@
 	이름: <input class="form-control" id="name" type="text" name="name" required textonly> <br>
 	생년: <input class="form-control" type="number" min=1 max=9999 name="year" placeholder="ex)1994" required> <br>
 	생월: <input class="form-control" type="number" min=1 max=12 name="month" required> <br>
-	생일: <input class="form-control" type="number" min=1 max=31 name="day" required> <br><br>
+	생일: <input class="form-control" type="number" min=1 max=31 name="day" required> 
+	<p>입력된 개인정보는 수집되지 않습니다.</p>
 	::수동 입력칸	추가 버튼::<br>
 	<div class=depth_div>         
 	<input type="button" class="btn_add btn-secondary" value="추가">
