@@ -1,18 +1,23 @@
 package org.zerock.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.LottoVO;
 import org.zerock.domain.ManualVO;
+import org.zerock.domain.UserVO;
+import org.zerock.mapper.LottoMapper;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class LottoServiceImpl implements LottoService {
-
+	
+	LottoMapper mapper;
+	
 	@Override
 	public int[] cal(LottoVO vo, ManualVO mo) {
 		LocalDate dayday = LocalDate.now();
@@ -69,5 +74,19 @@ public class LottoServiceImpl implements LottoService {
 		}
 		return lotto;
 	}
+	
+	public List<UserVO> getList(UserVO vo) {
+		return mapper.getList(vo);
+	}
+	
+	public UserVO getUserLotto(UserVO vo) {
+		mapper.insertLotto(vo);
+		return mapper.getUserLotto();
+	}
+	
+	
+	
+	
+	
 	
 }
