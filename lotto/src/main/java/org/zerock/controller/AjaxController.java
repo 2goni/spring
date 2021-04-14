@@ -6,17 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.LottoDTO;
-import org.zerock.domain.LottoVO;
-import org.zerock.domain.ManualVO;
 import org.zerock.domain.UserVO;
 import org.zerock.service.LottoServiceImpl;
 
@@ -29,10 +25,7 @@ public class AjaxController {
 
 	@CrossOrigin("*")
 	@PostMapping(value = "/mit/lottolist")
-	public List<LottoDTO> getlist(@RequestBody UserVO vo, HttpServletRequest request) {
-		vo.setIp(getIp(request));
-		vo.setBrowser(getBrowser(request));
-		vo.setUseragent(request.getHeader("user-agent"));
+	public List<LottoDTO> getlist(@RequestBody UserVO vo) {
 		List<LottoDTO> list = new ArrayList<LottoDTO>();
 		List<UserVO> uvo = service.getList(vo);
 		for (UserVO user : uvo) {
@@ -44,7 +37,11 @@ public class AjaxController {
 
 	@CrossOrigin("*")
 	@PostMapping(value = "/mit/lotto", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public LottoDTO getlotto(@RequestBody UserVO vo) {
+	public LottoDTO getlotto(@RequestBody UserVO vo, HttpServletRequest request) {
+		vo.setIp(getIp(request));
+		vo.setBrowser(getBrowser(request));
+		vo.setDevice(getDevice(request));
+		vo.setUseragent(request.getHeader("user-agent"));
 		UserVO uvo = service.getUserLotto(vo);
 		return LottoDTO.builder().lnum1(uvo.getLnum1()).lnum2(uvo.getLnum2()).lnum3(uvo.getLnum3())
 				.lnum4(uvo.getLnum4()).lnum5(uvo.getLnum5()).lnum6(uvo.getLnum6()).build();
@@ -102,4 +99,15 @@ public class AjaxController {
 		return webKind;
 	}
 
+	public static String getDevice(HttpServletRequest request) {
+        Device device = DeviceUtils.getCurrentDevice(request);        
+        if (device.isNormal()) {
+            return "PC";
+        } else if (device.isMobile()) {
+        	return "mobile";
+        } else if (device.isTablet()) {
+        	return "tablet";
+        }
+        return "UNKNOWN";
+	}
 }
