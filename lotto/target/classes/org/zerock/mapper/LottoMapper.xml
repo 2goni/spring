@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.LottoMapper">
+
+	<select id="getList" resultType="org.zerock.domain.UserVO">
+		<![CDATA[
+			SELECT * FROM user WHERE email =#{email}  order by userUpdate desc limit 5
+		]]>
+	</select>
+
+
+	<insert id="insertLotto">
+		INSERT INTO user(email,id,lnum1,lnum2,lnum3,lnum4,lnum5,lnum6,ip,browser,device,useragent) 
+		VALUES(#{email},#{id},#{lnum1},#{lnum2},#{lnum3},#{lnum4},#{lnum5},#{lnum6},#{ip},#{browser},#{device},#{useragent})
+	</insert>
+	
+
+
+</mapper>
+
+
+
+
+
+
+
+
+

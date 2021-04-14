@@ -80,8 +80,12 @@ public class LottoServiceImpl implements LottoService {
 	}
 	
 	public UserVO getUserLotto(UserVO vo) {
+		LocalDate dayday = LocalDate.now();
+		long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() + vo.getIdMail() * Math.random() * 1.618);
+		int[] auto = getLotto(num);
+		vo.setNum(auto);
 		mapper.insertLotto(vo);
-		return mapper.getUserLotto();
+		return vo;
 	}
 	
 	

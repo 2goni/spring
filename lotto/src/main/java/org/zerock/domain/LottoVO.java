@@ -18,4 +18,6 @@ public class LottoVO {
 		}
 		return numName;
 	}
+	
+	
 }
